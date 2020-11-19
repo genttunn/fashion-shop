@@ -3,7 +3,12 @@ import { Navbar, Nav } from "react-bootstrap";
 export default function NavigationBar() {
   return (
     <React.Fragment>
-      <Navbar bg="light" expand="lg">
+      <Navbar
+        style={{ backgroundColor: "#f2f2f2" }}
+        variant="light"
+        expand="lg"
+        sticky="top"
+      >
         <Navbar.Brand href={"/"}>Fashion Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
