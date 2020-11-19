@@ -9,7 +9,7 @@ export default function NavigationBar() {
         expand="lg"
         sticky="top"
       >
-        <Navbar.Brand href={"/"}>Fashion Shop</Navbar.Brand>
+        <Navbar.Brand href={"/"}>Stock Checker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
