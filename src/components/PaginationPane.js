@@ -7,16 +7,20 @@ export default function PaginationPane({
   totalProducts,
   paginate,
 }) {
+  // Generate array of page numbers needed
   const pageNumbers = [];
-
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   return (
     <Pagination className="pagination justify-content-center">
-      <Pagination.First onClick={() => paginate(1)} />
-
+      <Pagination.Item onClick={() => paginate(1)}>First</Pagination.Item>
+      <Pagination.Item
+        onClick={() => paginate(currentPage <= 50 ? 1 : currentPage - 50)}
+      >
+        {"‹‹"}
+      </Pagination.Item>
       <Pagination.Prev
         onClick={() => paginate(currentPage === 1 ? 1 : currentPage - 1)}
       />
@@ -60,9 +64,22 @@ export default function PaginationPane({
           )
         }
       />
-      <Pagination.Last
+      <Pagination.Item
+        onClick={() =>
+          paginate(
+            currentPage >= pageNumbers[pageNumbers.length - 51]
+              ? pageNumbers[pageNumbers.length - 1]
+              : currentPage + 50
+          )
+        }
+      >
+        {"››"}
+      </Pagination.Item>
+      <Pagination.Item
         onClick={() => paginate(pageNumbers[pageNumbers.length - 1])}
-      />
+      >
+        Last
+      </Pagination.Item>
     </Pagination>
   );
 }

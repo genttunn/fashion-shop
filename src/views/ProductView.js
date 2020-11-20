@@ -9,8 +9,9 @@ export default function ProductView({ category, setCurrentProduct }) {
   const { loading, setLoading } = useContext(LoadingContext);
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(12);
+  const [productsPerPage] = useState(10);
 
+  //slices content for a single page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(
@@ -23,12 +24,17 @@ export default function ProductView({ category, setCurrentProduct }) {
     if (loading === true) {
       fetchProducts();
     }
-    console.log(category);
   }, [loading]);
 
+  //fetch and sort products by name (alphabetically)
   let fetchProducts = async () => {
     let array = await requests.getProductsByCategory(category);
     if (array && array.length > 0) {
+      array = await array.sort(function (a, b) {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
       setProducts(array);
     }
     setLoading(false);
@@ -55,9 +61,7 @@ export default function ProductView({ category, setCurrentProduct }) {
           />
         </div>
       ) : (
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+        <Spinner animation="border" role="status" />
       )}
     </div>
   );

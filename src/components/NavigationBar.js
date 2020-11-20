@@ -1,15 +1,27 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import logo from "../3d-design.svg";
 export default function NavigationBar() {
   return (
     <React.Fragment>
       <Navbar
-        style={{ backgroundColor: "#f2f2f2" }}
+        style={{ backgroundColor: "#ffffff" }}
         variant="light"
         expand="lg"
         sticky="top"
+        collapseOnSelect
       >
-        <Navbar.Brand href={"/"}>Stock Checker</Navbar.Brand>
+        <Navbar.Brand href={"/"}>
+          {" "}
+          <img
+            src={logo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top mr-1"
+            alt="Logo"
+          />{" "}
+          Stock Checker
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">

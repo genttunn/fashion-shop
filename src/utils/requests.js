@@ -7,7 +7,6 @@ export const PRODUCT_TYPE = {
 export default class requests {
   static async getProductsByCategory(category) {
     try {
-      console.log(url + "products/" + category);
       let response = await fetch(url + "products/" + category, {
         method: "GET",
         headers: {
@@ -21,6 +20,7 @@ export default class requests {
     }
   }
 
+  // if fetch succeeds but return this "[]" then retry until retry times > 3 times
   static async getAvailabilityByManafacturer(manufacturer, retry) {
     retry += 1;
     try {

@@ -15,8 +15,10 @@ export default function InfoView({ currentProduct }) {
     }
   }, [currentProduct]);
 
+  // try to fetch and prompt for retry if encounter fetch error
   let checkAvailability = async (manufacturer) => {
     setRefetch(false);
+    // try to fetch starting from attempt 0
     let response = await requests.getAvailabilityByManafacturer(
       manufacturer,
       0
@@ -28,6 +30,7 @@ export default function InfoView({ currentProduct }) {
     }
   };
 
+  //search for product in manufacture's array by id, then extract stock status message
   let searchProduct = (products) => {
     let searchResult = products.find(
       (product) => product.id.toUpperCase() === currentProduct.id.toUpperCase()
@@ -43,10 +46,14 @@ export default function InfoView({ currentProduct }) {
       setRefetch(true);
     }
   };
+
   let decideCardContent = () => {
+    // if current product object is empty (none selected yet)
     if (Object.keys(currentProduct).length === 0) {
       return <div>Check product detail</div>;
-    } else if (refetch === true) {
+    }
+    // if fetch fails retry
+    else if (refetch === true) {
       return (
         <div>
           <Button
@@ -57,7 +64,9 @@ export default function InfoView({ currentProduct }) {
           </Button>
         </div>
       );
-    } else if (availability !== "") {
+    }
+    // if (current product is loaded and its availablilty is successfully queried
+    else if (availability !== "") {
       return (
         <Card>
           <Card.Body>
@@ -83,11 +92,7 @@ export default function InfoView({ currentProduct }) {
         </Card>
       );
     } else {
-      return (
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      );
+      return <Spinner animation="border" role="status" />;
     }
   };
 

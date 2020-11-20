@@ -1,8 +1,11 @@
 import React from "react";
-import { ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 export default function ProductList({ currentProducts, setCurrentProduct }) {
   return (
     <ListGroup>
+      <ListGroup.Item>
+        <b>PRODUCT_NAME (manufaturer): €price</b>
+      </ListGroup.Item>
       {currentProducts.map((product) => (
         <ListGroup.Item key={product.id}>
           <div
@@ -16,7 +19,9 @@ export default function ProductList({ currentProducts, setCurrentProduct }) {
               {product.name} ({product.manufacturer}): €{product.price}
             </span>
             <Button
-              variant="outline-primary"
+              variant="primary"
+              className="btn-sm"
+              style={{ borderRadius: 10 }}
               onClick={() => setCurrentProduct(product)}
             >
               Check
