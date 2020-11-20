@@ -1,4 +1,4 @@
-# Fashion Shop: stock checker for a mock api
+# Fashion Shop: stock checker for a mock API
 
 This project was created with React and Bootstrap.
 The API used can be found [here](https://bad-api-assignment.reaktor.com/).
