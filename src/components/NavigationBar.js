@@ -5,7 +5,9 @@ export default function NavigationBar() {
   return (
     <React.Fragment>
       <Navbar
-        style={{ backgroundColor: "#ffffff" }}
+        style={{
+          backgroundColor: "#ffffff",
+        }}
         variant="light"
         expand="lg"
         sticky="top"

@@ -14,7 +14,7 @@ export default function PaginationPane({
   }
 
   return (
-    <Pagination className="pagination justify-content-center">
+    <Pagination className="pagination justify-content-center my-2">
       <Pagination.Item onClick={() => paginate(1)}>First</Pagination.Item>
       <Pagination.Item
         onClick={() => paginate(currentPage <= 50 ? 1 : currentPage - 50)}
